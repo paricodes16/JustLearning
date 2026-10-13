@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Timer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <h1>Timer</h1>
+
+    <!-- Circular progress ring with the time shown in the middle -->
+    <div class="ring-wrap">
+      <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+        <circle class="ring-bg" cx="60" cy="60" r="54"></circle>
+        <circle class="ring-fg" id="ring" cx="60" cy="60" r="54"></circle>
+      </svg>
+      <div class="time" id="display" role="timer" aria-live="off">05:00</div>
+    </div>
+
+    <!-- Quick presets -->
+    <div class="presets" aria-label="Quick presets">
+      <button class="chip" data-minutes="1">1 min</button>
+      <button class="chip" data-minutes="5">5 min</button>
+      <button class="chip" data-minutes="10">10 min</button>
+      <button class="chip" data-minutes="25">25 min</button>
+    </div>
+
+    <!-- Custom time -->
+    <div class="custom">
+      <label>Minutes
+        <input type="number" id="minutes" min="0" max="999" value="5">
+      </label>
+      <label>Seconds
+        <input type="number" id="seconds" min="0" max="59" value="0">
+      </label>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button id="startBtn" class="primary">Start</button>
+      <button id="resetBtn">Reset</button>
+    </div>
+
+    <p class="hint">Tip: press <kbd>Space</kbd> to start or pause.</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+/* Colors live in variables so they are easy to change in one place */
+:root {
+  --bg: #f2f5f3;
+  --card: #ffffff;
+  --text: #16212b;
+  --muted: #5a6872;
+  --line: #d8e0dc;
+  --accent: #2a9d52;
+  --accent-dark: #16703a;
+  --danger: #c0392b;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1512;
+    --card: #17211c;
+    --text: #e8f0ec;
+    --muted: #93a39b;
+    --line: #2a3830;
+    --accent: #3fb868;
+    --accent-dark: #7fe3a0;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+.app {
+  width: min(92vw, 380px);
+  padding: 28px 24px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  text-align: center;
+}
+
+h1 { margin: 0 0 16px; font-size: 1.4rem; }
+
+/* Progress ring */
+.ring-wrap {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin: 0 auto 20px;
+}
+.ring { width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 8; }
+.ring-bg { stroke: var(--line); }
+.ring-fg {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-dasharray: 339.292;      /* circumference = 2 * PI * 54 */
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.25s linear;
+}
+.time {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 3rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;  /* digits keep equal width */
+}
+.finished .ring-fg { stroke: var(--danger); }
+.finished .time { color: var(--danger); }
+
+/* Presets */
+.presets { display: flex; gap: 8px; justify-content: center; margin-bottom: 16px; }
+.chip {
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.9rem;
+}
+.chip:hover { border-color: var(--accent); }
+
+/* Custom inputs */
+.custom { display: flex; gap: 12px; justify-content: center; margin-bottom: 20px; }
+.custom label { display: flex; flex-direction: column; gap: 4px; font-size: 0.8rem; color: var(--muted); }
+.custom input {
+  width: 90px;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+/* Buttons */
+.controls { display: flex; gap: 10px; }
+.controls button {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+.controls .primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.controls .primary:hover { background: var(--accent-dark); }
+
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button:disabled, input:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.hint { margin: 16px 0 0; font-size: 0.8rem; color: var(--muted); }
+kbd { background: var(--line); padding: 1px 6px; border-radius: 4px; font-size: 0.85em; }
