@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2F6FBF">
+  <title>Time Buddy</title>
+  <!-- Friendly rounded font. If it can't load, the browser uses the fallbacks in style.css -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+
+    <!-- Top bar: title, star counter, sound switch -->
+    <header class="topbar">
+      <h1>Time Buddy</h1>
+      <div class="topbar-right">
+        <span class="stars" id="stars" title="Stars earned"><span aria-hidden="true">⭐</span> <span id="starCount">0</span><span class="sr-only"> stars earned</span></span>
+        <button type="button" class="soft-btn" id="soundBtn" aria-pressed="true">🔊 Sound on</button>
+      </div>
+    </header>
+
+    <!-- Mode tabs -->
+    <div class="tabs" id="tabs" role="tablist" aria-label="Timer mode">
+      <button type="button" class="tab" role="tab" data-mode="countdown">Countdown</button>
+      <button type="button" class="tab" role="tab" data-mode="focus">Focus + Break</button>
+      <button type="button" class="tab" role="tab" data-mode="stopwatch">Stopwatch</button>
+    </div>
+
+    <!-- The big clock. data-zone changes the ring color (see style.css) -->
+    <section class="stage" id="stage" data-zone="idle">
+      <div class="ring-wrap">
+        <svg class="ring" viewBox="0 0 220 220" aria-hidden="true">
+          <circle class="ring-track" cx="110" cy="110" r="96"></circle>
+          <circle class="ring-fg" id="ring" cx="110" cy="110" r="96"></circle>
+        </svg>
+        <div class="ring-text">
+          <div class="ring-label" id="ringLabel">Countdown</div>
+          <div class="time" id="display" role="timer">05:00</div>
+          <div class="dots" id="dots" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- Mascot and speech bubble -->
+      <div class="buddy-row">
+        <svg class="buddy" id="buddy" data-mood="happy" viewBox="0 -6 120 116" aria-hidden="true">
+          <ellipse class="shadow" cx="60" cy="104" rx="30" ry="5"></ellipse>
+          <path class="antenna-stem" d="M60 10 V1"></path>
+          <circle class="antenna" cx="60" cy="0" r="4.5"></circle>
+          <path class="body" d="M60 8c28 0 46 20 46 48s-18 44-46 44S14 84 14 56 32 8 60 8z"></path>
+          <circle class="cheek" cx="32" cy="66" r="7"></circle>
+          <circle class="cheek" cx="88" cy="66" r="7"></circle>
+          <g class="eye"><ellipse cx="45" cy="52" rx="6" ry="8"></ellipse><circle class="shine" cx="47" cy="49" r="2"></circle></g>
+          <g class="eye"><ellipse cx="75" cy="52" rx="6" ry="8"></ellipse><circle class="shine" cx="77" cy="49" r="2"></circle></g>
+          <path class="mouth m-happy" d="M46 70 Q60 82 74 70"></path>
+          <path class="mouth m-cheer" d="M45 68 Q60 94 75 68 Z"></path>
+          <path class="mouth m-sleepy" d="M52 75 Q60 79 68 75"></path>
+        </svg>
+        <p class="bubble" id="bubble" aria-live="polite">Pick a time, then press start!</p>
+      </div>
+    </section>
+
+    <!-- Activity shortcuts (countdown mode only). Built by script.js -->
+    <section id="activities" class="activities" aria-label="Activities"></section>
+
+    <!-- Plus and minus controls. Built by script.js for each mode -->
+    <section id="settings" class="settings" aria-label="Timer settings"></section>
+
+    <!-- Main buttons -->
+    <div class="controls">
+      <button type="button" id="startBtn" class="btn primary" data-state="idle">Start</button>
+      <button type="button" id="resetBtn" class="btn">Reset</button>
+    </div>
+
+    <p class="hint">Tip: press <kbd>Space</kbd> to start or pause.</p>
+  </main>
+
+  <!-- Full-screen canvas used for the confetti -->
+  <canvas id="confetti" aria-hidden="true"></canvas>
+
+  <script src="script.js"></script>
+</body>
+</html>
