@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- viewport-fit=cover lets the app use the full screen on phones with notches -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#5b5bd6">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Doodle List">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <title>Doodle List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Header: date, title, friendly message, progress ring -->
+    <header class="top">
+      <div class="top-text">
+        <p class="date" id="dateText"></p>
+        <h1 id="viewTitle">Today</h1>
+        <p class="message" id="message"></p>
+        <p class="streak" id="streak" hidden></p>
+      </div>
+      <div class="ring-box" role="img" aria-label="Today's progress">
+        <svg viewBox="0 0 64 64" aria-hidden="true">
+          <circle class="ring-track" cx="32" cy="32" r="26"></circle>
+          <circle class="ring-fg" id="ringFg" cx="32" cy="32" r="26"></circle>
+        </svg>
+        <span class="ring-text" id="ringText">0</span>
+      </div>
+    </header>
+
+    <!-- Scrolling area -->
+    <main class="main" id="main">
+      <div class="actions">
+        <button type="button" class="pill" id="focusBtn" hidden>🎯 Focus mode</button>
+        <button type="button" class="pill" id="clearBtn" hidden>Clear all</button>
+      </div>
+      <p class="hint" id="hint">Tip: swipe a card right to finish it, left to delete it.</p>
+
+      <ul class="list" id="list"></ul>
+
+      <div class="empty" id="empty" hidden>
+        <div class="empty-emoji" id="emptyEmoji" aria-hidden="true">🌤️</div>
+        <h2 id="emptyTitle"></h2>
+        <p id="emptyText"></p>
+      </div>
+    </main>
+
+    <!-- Big add button, easy to reach with a thumb -->
+    <button type="button" class="fab" id="fab" aria-label="Add a task">+</button>
+
+    <!-- Bottom navigation -->
+    <nav class="nav" id="nav" aria-label="Views">
+      <button type="button" data-view="today"><span aria-hidden="true">☀️</span> Today <b id="countToday"></b></button>
+      <button type="button" data-view="later"><span aria-hidden="true">🗓️</span> Later <b id="countLater"></b></button>
+      <button type="button" data-view="done"><span aria-hidden="true">✅</span> Done <b id="countDone"></b></button>
+    </nav>
+  </div>
+
+  <!-- Bottom sheet for adding and editing tasks -->
+  <div class="sheet" id="sheet" aria-hidden="true">
+    <div class="sheet-backdrop" id="sheetBackdrop"></div>
+    <form class="sheet-panel" id="sheetForm" role="dialog" aria-modal="true" aria-labelledby="sheetHeading">
+      <div class="grab" aria-hidden="true"></div>
+      <h2 id="sheetHeading">New task</h2>
+
+      <div class="title-row">
+        <span class="bubble" id="preview" data-color="coral">✏️</span>
+        <input id="titleInput" type="text" maxlength="80" autocomplete="off"
+               enterkeyhint="done" placeholder="What do you want to do?" aria-label="Task title">
+      </div>
+
+      <p class="label">Icon</p>
+      <div class="emoji-row" id="emojiRow"></div>
+
+      <p class="label">Color</p>
+      <div class="color-row" id="colorRow"></div>
+
+      <p class="label">When</p>
+      <div class="when-row" id="whenRow">
+        <button type="button" data-when="today">Today</button>
+        <button type="button" data-when="later">Later</button>
+      </div>
+
+      <div class="sheet-actions">
+        <button type="button" class="btn danger" id="deleteBtn" hidden>Delete</button>
+        <button type="submit" class="btn primary" id="saveBtn">Add task</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Focus mode: one task at a time -->
+  <div class="focus" id="focus" aria-hidden="true">
+    <button type="button" class="focus-close" id="focusClose" aria-label="Close focus mode">✕</button>
+    <p class="focus-kicker">Just this one</p>
+    <span class="bubble big" id="focusBubble" data-color="coral">✏️</span>
+    <h2 id="focusTitle"></h2>
+    <p class="focus-left" id="focusLeft"></p>
+    <div class="focus-actions">
+      <button type="button" class="btn" id="focusSkip">Skip</button>
+      <button type="button" class="btn primary" id="focusDone">Done ✓</button>
+    </div>
+  </div>
+
+  <!-- Small message at the bottom, with an Undo button -->
+  <div class="toast" id="toast" role="status">
+    <span id="toastMsg"></span>
+    <button type="button" id="undoBtn">Undo</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
