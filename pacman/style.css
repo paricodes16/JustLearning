@@ -1,0 +1,32 @@
+:root {
+  --bg: #05050f;
+  --panel: #0d0d2b;
+  --wall: #2a3cff;
+  --pac: #ffe600;
+  --text: #f4f4ff;
+  --muted: #8d90c8;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body {
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 30%, #12123a, var(--bg) 70%);
+  color: var(--text);
+  font-family: "Press Start 2P", "Courier New", monospace;
+}
+.cabinet {
+  width: min(100vw - 24px, 456px);
+  padding: 14px;
+  background: var(--panel);
+  border: 3px solid var(--wall);
+  border-radius: 14px;
+  box-shadow: 0 0 0 3px #000, 0 0 40px rgba(42, 60, 255, .45);
+}
+.hud { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 12px; font-size: 10px; }
+.hud div { display: flex; flex-direction: column; gap: 6px; }
+.hud span { color: var(--muted); }
+.hud b { color: var(--pac); font-weight: normal; min-height: 12px; }
+.lives { letter-spacing: 2px; }
+canvas { display: block; width: 100%; height: auto; background: #000; border-radius: 6px; touch-action: none; }
+.help { margin: 12px 0 0; font-size: 8px; line-height: 1.7; color: var(--muted); text-align: center; }

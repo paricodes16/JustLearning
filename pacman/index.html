@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>Pac-Man</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="cabinet">
+    <header class="hud">
+      <div><span>Score</span><b id="score">0</b></div>
+      <div><span>Best</span><b id="best">0</b></div>
+      <div><span>Level</span><b id="level">1</b></div>
+      <div><span>Lives</span><b id="lives" class="lives"></b></div>
+    </header>
+    <canvas id="game" aria-label="Pac-Man game board"></canvas>
+    <p class="help">Move with arrow keys or WASD. Swipe on touch screens. Press P to pause.</p>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
