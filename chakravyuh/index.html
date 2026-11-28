@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chakravyuh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <h1>Chakravyuh</h1>
+    <p class="sub">Enter the wheel and reach the glowing core. Every maze is new, and in Commander mode the walls move while you do.</p>
+    <div class="controls">
+      <label>Type
+        <select id="type"><option value="spiral">Spiral wheel</option><option value="ring">Concentric wheel</option></select>
+      </label>
+      <label>Layers
+        <select id="layers"><option>5</option><option selected>7</option><option>9</option></select>
+      </label>
+      <label>Complexity
+        <select id="lvl"><option value="0">Nascent</option><option value="1">Easy</option><option value="2" selected>Medium</option><option value="3">Hard</option></select>
+      </label>
+      <label class="chk"><input type="checkbox" id="cmd"> Commander</label>
+      <label class="chk"><input type="checkbox" id="spin"> Spin</label>
+    </div>
+    <canvas id="cv" aria-label="Chakravyuh maze board"></canvas>
+    <div class="stats">
+      <span>Moves <b id="mv">0</b></span>
+      <span>Best possible <b id="opt">0</b></span>
+      <span>Time <b id="tm">0s</b></span>
+    </div>
+    <p id="msg" aria-live="polite"></p>
+    <div class="row">
+      <button id="hint">Hint</button>
+      <button id="sol" aria-pressed="false">Solution</button>
+      <button id="rs">Restart</button>
+      <button id="nw" class="pri">New maze</button>
+      <label>Seed <input type="text" id="seed" size="8" spellcheck="false"></label>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
